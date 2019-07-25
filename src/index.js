@@ -1,10 +1,12 @@
 import http from 'http';
 import express from 'express';
 import cors from 'cors';
+import compression from 'compression';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
 import errorHandler from 'errorhandler';
 import bodyParser from 'body-parser';
+import routes from './router/routes';
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
@@ -30,6 +32,7 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('common'));
 }
 app.use(cors());
+app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -41,7 +44,7 @@ app.disable('x-powered-by');
 /**
  * Routes.
  */
-app.get('/', (req, res) => res.send('Hello World!'));
+app.use(routes);
 
 /**
  * Error handler.

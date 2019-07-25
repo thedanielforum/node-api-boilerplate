@@ -3,13 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "license": "MIT",
   "scripts": {
     "start": "nodemon -w src --exec \"babel-node src\"",
     "build": "babel src --out-dir build",
     "prod": "pm2 start build --name api",
     "stop": "pm2 stop api",
     "preprod": "npm run -s build",
-    "test": "no tests defined",
+    "test": "jest --passWithNoTests --testEnvironment=node",
     "lint": "eslint src"
   },
   "author": "Daniel Dyrnes <daniel@ulventech.com>",
@@ -20,15 +21,21 @@
     "dotenv": "^8.0.0",
     "errorhandler": "^1.5.1",
     "express": "^4.17.1",
-    "morgan": "^1.9.1"
+    "jest": "^24.8.0",
+    "morgan": "^1.9.1",
+    "validator": "^11.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
+    "babel-jest": "^24.8.0",
     "babel-preset-env": "^1.7.0",
     "eslint": "^6.1.0",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-plugin-import": "^2.18.2",
     "nodemon": "^1.19.1"
+  },
+  "jest": {
+    "setupFilesAfterEnv": ["<rootDir>/jest.setup.js"]
   }
 }
