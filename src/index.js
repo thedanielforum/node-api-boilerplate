@@ -4,6 +4,7 @@ import cors from 'cors';
 import compression from 'compression';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
+import chalk from 'chalk';
 import errorHandler from 'errorhandler';
 import bodyParser from 'body-parser';
 import routes from './router/routes';
@@ -13,7 +14,7 @@ import routes from './router/routes';
  */
 const configured = dotenv.config({ path: '.env' });
 if (configured.error) {
-  console.log('There looks to be a configuration error somewhere, please check that you have a .env file in the root dir.');
+  console.log(chalk.red('There looks to be a configuration error somewhere, please check that you have a .env file in the root dir.'));
   throw configured.error;
 }
 
